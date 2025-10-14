@@ -1,0 +1,322 @@
+% article class because we want to fully customize the page and not use a cv template
+\documentclass[a4paper,12pt]{article}
+
+%----------------------------------------------------------------------------------------
+%	FONT
+%----------------------------------------------------------------------------------------
+
+% % fontspec allows you to use TTF/OTF fonts directly
+% \usepackage{fontspec}
+% \defaultfontfeatures{Ligatures=TeX}
+
+% % modified for ShareLaTeX use
+% \setmainfont[
+% SmallCapsFont = Fontin-SmallCaps.otf,
+% BoldFont = Fontin-Bold.otf,
+% ItalicFont = Fontin-Italic.otf
+% ]
+% {Fontin.otf}
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES
+%----------------------------------------------------------------------------------------
+\usepackage{url}
+\usepackage{parskip} 	
+
+%other packages for formatting
+\RequirePackage{color}
+\RequirePackage{graphicx}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage[scale=0.9]{geometry}
+
+%tabularx environment
+\usepackage{array}
+\usepackage{tabularx}
+
+%for lists within experience section
+\usepackage{enumitem}
+
+% centered version of 'X' col. type
+\newcolumntype{C}{>{\centering\arraybackslash}X} 
+
+%to prevent spillover of tabular into next pages
+\usepackage{supertabular}
+\newlength{\fullcollw}
+\setlength{\fullcollw}{0.47\textwidth}
+
+%custom \section
+\usepackage{titlesec}				
+\usepackage{multicol}
+\usepackage{multirow}
+
+%CV Sections inspired by: 
+%http://stefano.italians.nl/archives/26
+\titleformat{\section}{\Large\scshape\raggedright}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{10pt}{10pt}
+
+%for publications
+\usepackage[style=authoryear,sorting=ynt, maxbibnames=2]{biblatex}
+
+%Setup hyperref package, and colours for links
+\usepackage[unicode, draft=false]{hyperref}
+\definecolor{linkcolour}{rgb}{0,0.2,0.6}
+\hypersetup{colorlinks,breaklinks,urlcolor=linkcolour,linkcolor=linkcolour}
+\addbibresource{citations.bib}
+\setlength\bibitemsep{1em}
+
+%for rounded images
+\usepackage{tikz}
+\newcommand{\roundpic}[1]{\begin{tikzpicture}\clip (0,0) circle (2cm);\node at (0,0) {\includegraphics[width=4cm]{#1}};\end{tikzpicture}}
+
+%debug page outer frames
+%\usepackage{showframe}
+
+
+% job listing environments
+\newenvironment{jobshort}[2]
+    {
+    \begin{tabularx}{\linewidth}{@{}l X r@{}}
+    \textbf{#1} & \hfill &  #2 \\[3.75pt]
+    \end{tabularx}
+    }
+    {
+    }
+
+\newenvironment{joblong}[2]
+    {
+    \begin{tabularx}{\linewidth}{@{}l X r@{}}
+    \textbf{#1} & \hfill &  #2 \\[3.75pt]
+    \end{tabularx}
+    \begin{minipage}[t]{\linewidth}
+    \begin{itemize}[nosep,after=\strut, leftmargin=1em, itemsep=3pt,label=--]
+    }
+    {
+    \end{itemize}
+    \end{minipage}    
+    }
+
+
+
+%----------------------------------------------------------------------------------------
+%	BEGIN DOCUMENT
+%----------------------------------------------------------------------------------------
+\begin{document}
+
+% non-numbered pages
+\pagestyle{empty} 
+
+%----------------------------------------------------------------------------------------
+%	TITLE
+%----------------------------------------------------------------------------------------
+
+% \begin{tabularx}{\linewidth}{ @{}X X@{} }
+% \huge{Your Name}\vspace{2pt} & \hfill \emoji{incoming-envelope} email@email.com \\
+% \raisebox{-0.05\height}\faGithub\ username \ | \
+% \raisebox{-0.00\height}\faLinkedin\ username \ | \ \raisebox{-0.05\height}\faGlobe \ mysite.com  & \hfill \emoji{calling} number
+% \end{tabularx}
+
+\begin{center}
+    \roundpic{./resources/me.jpg}
+\end{center}
+
+\begin{tabularx}{\linewidth}{@{} C @{}}
+\Huge{ANDERS Planck} \\[7.5pt]
+\href{https://github.com/Anders-planck}{\raisebox{-0.05\height}\faGithub\ Anders-planck} \ $|$ \
+\href{https://linkedin.com/in/anders-planck}{\raisebox{-0.05\height}\faLinkedin\ anders-planck} \ $|$ \
+\href{mailto:anders.jipwouo@gmail.com}{\raisebox{-0.05\height}\faEnvelope \ anders.jipwouo@gmail.com} \ $|$ \
+\href{tel:+393518884983}{\raisebox{-0.05\height}\faMobile \ +39 3518884983} \\
+\normalsize{Ferrara, Emilia-Romagna}
+\end{tabularx}
+
+%----------------------------------------------------------------------------------------
+% EXPERIENCE SECTIONS
+%----------------------------------------------------------------------------------------
+
+%Interests/ Keywords/ Summary
+\section{Chi sono}
+Sviluppatore Full Stack con circa 3 anni di esperienza, specializzato in PHP e tecnologie web moderne, con una forte passione per il design di soluzioni scalabili e orientate a best practice. Ho contribuito attivamente a progetti open source e privati, occupandomi di backend, frontend, API, infrastruttura e interfacce utente.
+Sono abituato a lavorare in team adottando metodologie Agile / Scrum, e a mantenere un forte orientamento alla qualità, testing e manutenibilità del codice.
+
+%Experience
+\section{A-Cube S.R.L. - Sviluppatore Full Stack}
+{Gennaio 2023 - in corso}
+
+\begin{joblong}{\href{https://github.com/a-cube-io/ereceipts-js-sdk}{A-Cube e-Receipts SDK, (Pacchetto NPM)}}{Luglio 2025 - in corso}
+\item SDK per l'integrazione con il sistema di gestione scontrini elettronici A-Cube
+\item Sviluppatore Full Stack TypeScript
+\item SDK altamente performante e modulare per l'integrazione con le API RESTful di ACube per la gestione degli scontrini elettronici
+\item Progettazione e sviluppo dell'architettura modulare dell'SDK con supporto per ambienti online e offline
+\item Implementazione di un sistema di autenticazione robusto con supporto mTLS e gestione della cache
+\item Sviluppo di un sistema di coda per le operazioni offline con sincronizzazione automatica
+\item Implementazione di un sistema di cache intelligente per ottimizzare le prestazioni
+\item Sviluppo di API client tipizzate per l'interazione con i servizi ACube (gestione merchant, scontrini, transazioni, reportistica)
+\item Scrittura di test automatici per garantire l'affidabilità e documentazione dettagliata
+\end{joblong}
+
+\begin{joblong}{\href{https://www.npmjs.com/package/@a-cube-io/expo-mutual-tls}{Modulo Expo: @a-cube-io/expo-mutual-tls}}{Luglio 2025 - in corso}
+\item Modulo Expo open-source per l'implementazione di autenticazione client Mutual TLS (mTLS) in applicazioni React Native/Expo
+\item Sviluppatore Full Stack
+\item Progettazione e sviluppo del modulo Expo in TypeScript con implementazioni native per iOS (Swift) e Android (Kotlin)
+\item Definizione e implementazione di API semplici per configurazione, gestione certificati e operazioni di rete
+\item Sviluppo di funzionalità avanzate come supporto biometrico e gestione eventi
+\item Gestione di integrazione con servizi esterni e pubblicazione su npm
+\item Sviluppo di esempi completi e documentazione esaustiva
+\end{joblong}
+
+\begin{joblong}{Applicazioni Web/Mobile, (Dashboard Pem-Pel)}{Guigno 2025 - in corso}
+\item Sviluppatore Full Stack (React Native/TypeScript)
+\item Sviluppo e manutenzione di un'applicazione mobile e web cross-platform per la gestione e il monitoraggio delle attività commerciali
+\item Sviluppo di interfacce utente reattive e performanti con React Native ed Expo
+\item Implementazione di componenti riutilizzabili con TypeScript per garantire la type-safety
+\item Gestione dello stato dell'applicazione tramite React Context e React Query
+\item Implementazione di animazioni fluide e transizioni tra schermate
+\item Ottimizzazione delle prestazioni con tecniche di memoizzazione e virtualizzazione delle liste
+\item Progettazione di un'architettura modulare e scalabile con React Navigation
+\end{joblong}
+
+\begin{joblong}{DASHBORD: Fatture/PA e Tutti A-Cube Product}{Gennaio 2025 - in corso}
+\item Sviluppatore Frontend \& UI/UX Designer
+\item Rivisitazione completa di un'applicazione web per la gestione e l'elaborazione di fatture elettroniche per la Pubblica Amministrazione
+\item Tecnologie principali: React 18 con TypeScript, Redux Toolkit, Material-UI (MUI) con tema personalizzato
+\item Migrazione da classi a Functional Components con React Hooks e architettura a feature
+\item Riduzione del bundle size del 40\% con code-splitting e ottimizzazione delle chiamate API
+\item Interfaccia completamente riprogettata con Material-UI v5 e gestione avanzata degli stati
+\item Supporto completo FatturaPA 1.2.1 e integrazione con il sistema di conservazione a norma
+\item \textbf{Risultati}: +65\% di performance complessive, 4.8/5 valutazione media utente
+\end{joblong}
+
+\begin{joblong}{Open Banking UI}{Gennaio 2024 - Settembre 2024}
+\item Sviluppatore Full Stack
+\item Applicazione web innovativa per l'open banking per facilitare nuovi metodi di pagamento tramite bonifici SEPA e istantanei
+\item Sviluppo architetturale completo con SPA React 18 con TypeScript utilizzando Vite come build tool
+\item Sistema di pagamenti avanzato per bonifici SEPA e SEPA Instant con gestione completa degli stati
+\item Sviluppo di un sistema flessibile per pagamenti rateali con selezione multipla e validazione real-time
+\item API RESTful robuste con integrazione tramite Redux Toolkit Query e validazione end-to-end
+\item Interfaccia utente moderna con design system Material-UI (MUI) e tema personalizzato
+\item Internazionalizzazione completa con React Intl, italiano come lingua principale
+\item Integrazione di PDF.js per la preview e gestione di fatture e documenti di pagamento
+\item Ambiente multi-stage con configurazione e deployment su tre ambienti
+\end{joblong}
+
+\begin{joblong}{Integrazioni e Dashboard (Stripe Dashboard)}{Gennaio 2024 - Decembre 2024}
+\item Sviluppatore Full Stack
+\item Sviluppo di una dashboard avanzata per la gestione e il monitoraggio di documenti Stripe
+\item Progettazione e sviluppo del backend con gestione di API REST per l'interazione sicura tra frontend e servizi Stripe
+\item Sviluppo frontend con React / TypeScript / UI responsive utilizzando componenti modulari
+\item Gestione database e dati strutturati tramite servizi di query ottimizzate
+\item Integrazione con servizi esterni come Stripe per autenticazione e autorizzazioni
+\item Implementazione di test automatici per componenti e flussi critici
+\item Collaborazione in team con metodologia Agile / Scrum
+\end{joblong}
+
+\begin{joblong}{A-Cube E-Invoicing - Stripe App UI Extension}{Gennaio 2024 -  in corso}
+\item Sviluppatore Full Stack
+\item Sviluppo di un'estensione enterprise-grade per la dashboard Stripe per la gestione completa di documenti di pagamento
+\item Architettura context-based a 6 livelli utilizzando React Context + useReducer senza Redux
+\item Sviluppo di 8 viste principali registrate in Stripe con pattern BaseView enterprise-grade
+\item Implementazione avanzata di validazione per codice fiscale, partita IVA, codice destinatario B2B
+\item Form Architecture con wizard step-by-step utilizzando react-hook-form + Zod validation
+\item Ottimizzazione con 173 istanze di memoization e gestione intelligente del re-rendering
+\item Integrazione sicura con API Stripe e sistemi contabili A-Cube
+\end{joblong}
+
+\begin{joblong}{PRESERVATION API}{Maggio 2023 -  Decembre 2024}
+\item Sviluppatore Full Stack
+\item Sviluppo e manutenzione di un servizio avanzato di conservazione elettronica digitale conforme alle normative italiane
+\item Tecnologie e Architettura: Symfony 6.2+ con API Platform 3, Doctrine ORM con PostgreSQL, JWT con Lexik
+\item Cloud: AWS SDK per integrazione S3 e Lambda, testing con PHPUnit, Behat, PHPStan livello 8
+\item Containerizzazione: Docker con docker-compose per sviluppo locale e CI/CD
+\item Progettazione API RESTful con API Platform 3, implementazione di 15+ risorse specifiche
+\item Sviluppo architettura a microservizi con pattern CQRS per separazione responsabilità
+\item Implementazione metadati strutturati per ogni tipologia documentale secondo normative AgID
+\item Integrazione AWS per storage sicuro e processamento asincrono dei pacchetti
+\item Test automation avanzata con $>$200 scenari Behat per test end-to-end
+\end{joblong}
+
+\begin{joblong}{Sistema di Notifiche Email Aziendale (Notifier)}{Maggio 2023 - Settembre 2023}
+\item Sviluppatore Full Stack
+\item Progetto enterprise per la gestione centralizzata delle notifiche email in ambiente AWS serverless
+\item Architettura e sviluppo del servizio notifiche con funzione Lambda in Python 3.12
+\item Sistema di generazione template email basato su HTML/Tailwind CSS con generazione automatizzata
+\item Componente di tracciamento per monitorare eventi SES e salvare dati in DynamoDB
+\item Integrazione API Platform con API Gateway e autorizzazioni granulari
+\item Testing completo con copertura $>$80\% utilizzando pytest e unittest.mock
+\item CI/CD e DevOps con AWS SAM e Docker Compose per sviluppo locale
+\item Gestione infrastrutture con stack CloudFormation completo
+\end{joblong}
+
+%----------------------------------------------------------------------------------------
+%	PROJECTS
+%----------------------------------------------------------------------------------------
+\section{Progetti Personali}
+
+\begin{joblong}{VueKit}{2022}
+\item Sviluppatore Full Stack
+\item Kit di componenti e applicazione SaaS con Next.js e Firebase per gestione contenuti digitali (blog, tutorial, lavori) con autenticazione, database real-time e componenti UI modulari.
+\item Sviluppo di oltre 65 componenti React utilizzando Chakra UI, TipTap per editor avanzati, Framer Motion per animazioni e integrazione con Firebase Functions/Firestore.
+\item Gestione ruoli utente, ottimizzazioni performance (Tailwind CSS, Chart.js, Vercel deployment) e debugging per sincronizzazione dati e UX fluida.
+\end{joblong}
+
+%----------------------------------------------------------------------------------------
+%	EDUCATION
+%----------------------------------------------------------------------------------------
+\section{Formazione}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+Settembre 2023 - in corso ( Fine prevista per Decembre 2025) & Laurea Magistrale in Informatica ed Elettronica  \textbf{Università degli Studi di Ferrara} \\
+Settembre 2020 - Guigno 2023 & Laurea in Informatica ed Elettronica  \textbf{Università degli Studi di Ferrara} \\
+\end{tabularx}
+
+%----------------------------------------------------------------------------------------
+%	LANGUAGES
+%----------------------------------------------------------------------------------------
+\section{Conoscenze Linguistiche}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+Francese & Madrelingua \\
+Italiano & B2 \\
+Inglese & B1 \\
+\end{tabularx}
+
+
+%----------------------------------------------------------------------------------------
+%	SKILLS
+%----------------------------------------------------------------------------------------
+\section{Competenze Tecniche}
+
+\begin{tabularx}{\linewidth}{|>{\raggedright\arraybackslash}p{4cm}|X|}
+\hline
+\textbf{Backend / Server} & PHP (Laravel, Symfony), Node.js (Adonis.js) \\
+\hline
+\textbf{Frontend / UI} & JavaScript, TypeScript, React, React Native, CSS3, HTML5, Responsive Design \\
+\hline
+\textbf{API / Comunicazione} & RESTful API, JSON, WebSocket \\
+\hline
+\textbf{Database} & MySQL, Relazionali e NoSQL \\
+\hline
+\textbf{DevOps / Cloud / Infrastruttura} & Linux, Docker, CI/CD, Firebase/Supabase (progetti personali)  \\
+\hline
+\textbf{Metodologie / Qualità} & Agile, Scrum, Test automatici (unit, integrazione), Git, Code Review \\
+\hline
+\textbf{Altre competenze} & Librerie open source, Contribuzione a progetti pubblici, Ottimizzazione prestazioni \\
+\hline
+\end{tabularx}
+
+%----------------------------------------------------------------------------------------
+%	MOTIVATION
+%----------------------------------------------------------------------------------------
+\section{Motivazione \& Obiettivo Professionale}
+
+Desidero entrare in un contesto stimolante come Full Stack Developer PHP in cui poter contribuire attivamente al ciclo completo di sviluppo (da analisi, progettazione, sviluppo a deployment), crescere tecnicamente e collaborare con team strutturati su progetti enterprise. Il mio obiettivo è apportare valore fin da subito grazie alle mie competenze tecniche, senso del dovere e volontà di apprendere ulteriormente.
+
+%----------------------------------------------------------------------------------------
+%	ADDITIONAL INFO
+%----------------------------------------------------------------------------------------
+\section{Soft Skills}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+Problem Solving & Lavoro in Team \\
+Adattabilità & Orientamento alla Qualità \\
+\end{tabularx}
+
+\vfill
+\center{\footnotesize Last updated: \today}
+
+\end{document}
